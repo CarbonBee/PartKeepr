@@ -13829,9 +13829,14 @@ Ext.define('PartKeepr.PartDisplay', {
                                 }
                                 else
                                 {
+                                    if (label.getObjectText("CODE-BARRES") == 0)
+                                    {
+                                        alert("Label don't have CODE-BARRES field");
+                                    }
                                     label.setObjectText("Name", data.name);
                                     label.setObjectText("Description", data.description);
                                     label.setObjectText("InternalPartNumber", data.internalPartNumber);
+                                    label.setObjectText("CODE-BARRES", data.internalPartNumber);
 
                                     label.render();
                                     label.print(printers[0].name);
