@@ -43,6 +43,76 @@ Ext.define('PartKeepr.PartDisplay', {
             }, this)
         });
 
+
+        /**
+         * Create the "print part" button
+         */
+        this.printButton = new Ext.Button({
+            text: i18n("Print Tag"),
+            iconCls: 'web-icon tag_blue',
+            handler: Ext.bind(function ()
+            {
+                data = this.record.data;
+                printLabel= function(data)
+                {
+                    printers = dymo.label.framework.getPrinters();
+                    if (printers.length == 0)
+                    {
+                        alert("No DYMO printers are installed. Install DYMO printers.");
+                    }
+                    else
+                    {
+                        label = dymo.label.framework.openLabelFile(window.location.href + "/etiquette_stock.label");
+                        // check that label has an address object
+                        if (label.getObjectText("InternalPartNumber") == 0)
+                        {
+                            alert("Label don't have InternalPartNumber text field");
+                        }
+                        else
+                        {
+                            if (label.getObjectText("Name") == 0)
+                            {
+                                alert("Label don't have Name text field");
+                            }
+                            else
+                            {
+                                if (label.getObjectText("Description") == 0)
+                                {
+                                    alert("Label don't have Description text field");
+                                }
+                                else
+                                {
+                                    label.setObjectText("Name", data.name);
+                                    label.setObjectText("Description", data.description);
+                                    label.setObjectText("InternalPartNumber", data.internalPartNumber);
+
+                                    label.render();
+                                    label.print(printers[0].name);
+                                }
+                            }
+                        }
+                    }
+                }
+                if(typeof dymo === "undefined")
+                {
+                    var script = document.createElement("script");
+                    script.src = "/dymo-label-framework.js"
+                    script.type = "text/javascript";
+                    console.log(script);
+                    script.onload = function(){
+                        printLabel(data);
+                    };
+                    document.head.appendChild(script);
+                }
+                else
+                {
+                    printLabel(data);
+                }
+            }, this)
+        });
+
+
+
         /**
          * Create the toolbar which holds our buttons
          */
@@ -51,7 +121,8 @@ Ext.define('PartKeepr.PartDisplay', {
             items: [
                 this.addButton,
                 this.deleteButton,
-                this.editButton
+                this.editButton,
+                this.printButton
             ]
         });
 
