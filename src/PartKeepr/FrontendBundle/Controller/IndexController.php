@@ -17,6 +17,11 @@ class IndexController extends Controller
      */
     public function indexAction()
     {
+        return $this->render('PartKeeprFrontendBundle::index.html.twig', $this->getRenderParameters());
+    }
+
+    public function getRenderParameters()
+    {
         if ($this->getParameter('partkeepr.maintenance') !== false) {
             $renderParams['maintenanceTitle'] = $this->getParameter('partkeepr.maintenance.title');
             $renderParams['maintenanceMessage'] = $this->getParameter('partkeepr.maintenance.message');
@@ -71,8 +76,26 @@ class IndexController extends Controller
         $renderParams = [];
         $renderParams['parameters'] = $aParameters;
         $renderParams['debug'] = $this->get('kernel')->isDebug();
+        $renderParams['baseUrl'] = $this->getBaseURL();
 
-        return $this->render('PartKeeprFrontendBundle::index.html.twig', $renderParams);
+        return $renderParams;
+    }
+
+    /**
+     * Returns the base_url, either from the router (default) or overridden by the
+     * partkeepr.frontend.base_url parameter.
+     *
+     * @return string
+     */
+    public function getBaseURL()
+    {
+        $baseUrl = $this->getParameterWithDefault('partkeepr.frontend.base_url', false);
+
+        if ($baseUrl !== false) {
+            return $baseUrl;
+        }
+
+        return $this->container->get('router')->getContext()->getBaseUrl();
     }
 
     public function getParameterWithDefault($name, $default)
