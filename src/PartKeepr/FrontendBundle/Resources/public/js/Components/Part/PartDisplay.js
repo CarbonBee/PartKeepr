@@ -114,6 +114,7 @@ Ext.define('PartKeepr.PartDisplay', {
 
 
 
+                                        label.setObjectText("Name", data.name);
                                         label.setObjectText("Description1", description1);
                                         label.setObjectText("Description2", description2);
                                         label.setObjectText("InternalPartNumber", data.internalPartNumber);
