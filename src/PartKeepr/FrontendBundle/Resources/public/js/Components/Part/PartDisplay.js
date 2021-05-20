@@ -76,23 +76,52 @@ Ext.define('PartKeepr.PartDisplay', {
                             }
                             else
                             {
-                                if (label.getObjectText("Description") == 0)
+                                if (label.getObjectText("Description1") == 0)
                                 {
-                                    alert("Label don't have Description text field");
+                                    alert("Label don't have Description1 text field");
                                 }
                                 else
                                 {
-                                    if (label.getObjectText("CODE-BARRES") == 0)
+                                    if (label.getObjectText("Description2") == 0)
                                     {
-                                        alert("Label don't have CODE-BARRES field");
+                                        alert("Label don't have Description2 text field");
                                     }
-                                    label.setObjectText("Name", data.name);
-                                    label.setObjectText("Description", data.description);
-                                    label.setObjectText("InternalPartNumber", data.internalPartNumber);
-                                    label.setObjectText("CODE-BARRES", data.internalPartNumber);
+                                    else
+                                    {
+                                        if (label.getObjectText("CODE-BARRES") == 0)
+                                        {
+                                            alert("Label don't have CODE-BARRES field");
+                                        }
+                                        description1 = "";
+                                        description2 = "";
+                                        limit = 50;
+                                        if(data.description.length > limit)
+                                        {
+                                            description1 = data.description.substr(0,limit);
+                                            stop = limit;
+                                            if(data.description[limit] !== " " && description1.lastIndexOf(" ") !== -1)
+                                            {
+                                                stop = Math.min(description1.length, description1.lastIndexOf(" "));
+                                                description1 = description1.substr(0,stop);
+                                                stop +=1
+                                            }
+                                            description2 = data.description.substr(stop,limit);
+                                        }
+                                        else
+                                        {
+                                            description1 = data.description;
+                                        }
 
-                                    label.render();
-                                    label.print(printers[0].name);
+
+
+                                        label.setObjectText("Description1", description1);
+                                        label.setObjectText("Description2", description2);
+                                        label.setObjectText("InternalPartNumber", data.internalPartNumber);
+                                        label.setObjectText("CODE-BARRES", data.internalPartNumber);
+
+                                        label.render();
+                                        label.print(printers[0].name);
+                                    }
                                 }
                             }
                         }

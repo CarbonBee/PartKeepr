@@ -85,11 +85,11 @@
 				</Element>
 			</StyledText>
 		</TextObject>
-		<Bounds X="322" Y="231.000000000001" Width="4613" Height="275.999999999999" />
+		<Bounds X="322" Y="138.692307692311" Width="4613" Height="275.999999999999" />
 	</ObjectInfo>
 	<ObjectInfo>
 		<TextObject>
-			<Name>Description</Name>
+			<Name>Description1</Name>
 			<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />
 			<BackColor Alpha="0" Red="255" Green="255" Blue="255" />
 			<LinkedObjectName />
@@ -105,14 +105,42 @@
 			<Verticalized>False</Verticalized>
 			<StyledText>
 				<Element>
-					<String xml:space="preserve">Capteur hyperspectral avec un texte super mega vraiment trop long</String>
+					<String xml:space="preserve">Description1</String>
 					<Attributes>
-						<Font Family="Arial" Size="9" Bold="False" Italic="False" Underline="False" Strikeout="False" />
+						<Font Family="Tahoma" Size="9" Bold="False" Italic="False" Underline="False" Strikeout="False" />
 						<ForeColor Alpha="255" Red="0" Green="0" Blue="0" HueScale="100" />
 					</Attributes>
 				</Element>
 			</StyledText>
 		</TextObject>
-		<Bounds X="322" Y="627.000000000001" Width="4613" Height="336.000000000001" />
+		<Bounds X="322" Y="497.769230769234" Width="4613" Height="206.769230769234" />
+	</ObjectInfo>
+	<ObjectInfo>
+		<TextObject>
+			<Name>Description2</Name>
+			<ForeColor Alpha="255" Red="0" Green="0" Blue="0" />
+			<BackColor Alpha="0" Red="255" Green="255" Blue="255" />
+			<LinkedObjectName />
+			<Rotation>Rotation0</Rotation>
+			<IsMirrored>False</IsMirrored>
+			<IsVariable>False</IsVariable>
+			<GroupID>-1</GroupID>
+			<IsOutlined>False</IsOutlined>
+			<HorizontalAlignment>Left</HorizontalAlignment>
+			<VerticalAlignment>Top</VerticalAlignment>
+			<TextFitMode>None</TextFitMode>
+			<UseFullFontHeight>True</UseFullFontHeight>
+			<Verticalized>False</Verticalized>
+			<StyledText>
+				<Element>
+					<String xml:space="preserve">Description2</String>
+					<Attributes>
+						<Font Family="Tahoma" Size="9" Bold="False" Italic="False" Underline="False" Strikeout="False" />
+						<ForeColor Alpha="255" Red="0" Green="0" Blue="0" HueScale="100" />
+					</Attributes>
+				</Element>
+			</StyledText>
+		</TextObject>
+		<Bounds X="322" Y="764.307692307691" Width="4613" Height="216.000000000003" />
 	</ObjectInfo>
 </DieCutLabel>
